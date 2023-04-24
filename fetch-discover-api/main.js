@@ -7,8 +7,8 @@ function getUsers() {
     .catch(error => console.error(error))
 }
 
-function getUser(){
-    fetch(`${url}/1`)
+function getUser(id){
+    fetch(`${url}/${id}`)
     .then(response => response.json())
     .then (data => {
         userName.textContent = data.name
@@ -17,7 +17,6 @@ function getUser(){
     })
     .catch(error => console.error(error))
 }
-
 
 function addUser(newUser){
 fetch(url, {
@@ -32,13 +31,33 @@ fetch(url, {
 .catch(error => console.error(error))
 }
 
+function updateUser(updatedUser, id) {
+    fetch(`${url}/${id}`, {
+        method: "PUT",
+        body: JSON.stringify(updatedUser),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(response => response.json())
+    .then( data => alertApi.textContent = data)
+    .catch(error => console.error(error))
+}
+
 const newUser = {
     name: "Olivia Zars",
     avatar: "https://picsum.photos/200/300",
     city: "Salvador"
 }
-// addUser(newUser)
+addUser(newUser)
+
+const updatedUser = {
+    name: "Mayk Brito",
+    avatar: "https://avatars.githubusercontent.com/u/6643122?v=4",
+    city: "Curitiba"
+}
+updateUser(updatedUser, 10)
 
 getUsers()
 
-getUser()
+getUser(10)
