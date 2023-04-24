@@ -44,19 +44,33 @@ function updateUser(updatedUser, id) {
     .catch(error => console.error(error))
 }
 
+function deletUser(id) {
+    fetch(`${url}/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(response => response.json())
+    .then(data => alertApi.textContent = data)
+    .chatch(error => console.error(error))
+}
+
 const newUser = {
     name: "Olivia Zars",
     avatar: "https://picsum.photos/200/300",
     city: "Salvador"
 }
-addUser(newUser)
+// addUser(newUser)
 
 const updatedUser = {
     name: "Mayk Brito",
     avatar: "https://avatars.githubusercontent.com/u/6643122?v=4",
     city: "Curitiba"
 }
-updateUser(updatedUser, 10)
+// updateUser(updatedUser, 10)
+
+// deletUser(11)
 
 getUsers()
 
